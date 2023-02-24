@@ -1,0 +1,19 @@
+version: '3'
+
+#services we are creating, first one we named broker-service
+services:
+
+  broker-service:
+
+    #providing the path to the dockerfile since it is another folder
+    build: 
+      context: ./../broker-service
+      dockerfile: ./../broker-service/broker-service.dockerfile
+    restart: always
+
+    #our frontend is already listening on port 80, so we're mapping port 8080 to port 80 for our broker service
+    ports:
+      - "8080:80"
+    deploy:
+      mode: replicated
+      replicas: 1
