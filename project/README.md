@@ -21,5 +21,8 @@ Day 3:
 
 Day 4:
 - Tested our our broker service by accessing the service from our `test.page.gohtml`. Had to write HTML which wasn't something I liked smh
+- Created helper functions to write and read json, and also to send an error message
+- We created a MakeFile to run some commands easily, we also edited our dockerfile to take advantage of the binary built with the first command of the 
+   up_build Makefile command
 
    
