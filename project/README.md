@@ -25,4 +25,7 @@ Day 4:
 - We created a MakeFile to run some commands easily, we also edited our dockerfile to take advantage of the binary built with the first command of the 
    up_build Makefile command
 
+Day 5:
+- Wrote up stubs for authentication microservice
+
    
