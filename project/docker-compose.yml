@@ -14,6 +14,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: users
+    #this adds the database files to our project. specifically at the ./db-data/postgres directory. weird choice but okay
     volumes:
       - ./db-data/postgres/:/var/lib/postgresql/data/
 
