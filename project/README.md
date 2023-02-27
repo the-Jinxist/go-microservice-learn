@@ -28,4 +28,7 @@ Day 4:
 Day 5:
 - Wrote up stubs for authentication microservice
 
+Day 6:
+- Working on connecting authentication service to postgres database, used the following drivers `go get -u github.com/jackc/pgconn`, `go get -u github.com/jackc/pgx/v4`, `go get -u github.com/jackc/pgx/v4/stdlib`
+
    
