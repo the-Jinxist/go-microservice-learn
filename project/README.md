@@ -30,5 +30,6 @@ Day 5:
 
 Day 6:
 - Working on connecting authentication service to postgres database, used the following drivers `go get -u github.com/jackc/pgconn`, `go get -u github.com/jackc/pgx/v4`, `go get -u github.com/jackc/pgx/v4/stdlib`
+- We'll be adding a postgres container to our docker-compose.yml and we'll be accessing that
 
    
