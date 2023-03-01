@@ -17,44 +17,40 @@ type AuthPayload struct {
 	Password string `json:"password"`
 }
 
-// We're using a raw http handler, my chest.
 func (app *Config) Broker(w http.ResponseWriter, r *http.Request) {
 	payload := jsonResponse{
 		Error:   false,
-		Message: "Hit the broker!",
+		Message: "Hit the broker",
 	}
 
 	_ = app.writeJson(w, http.StatusOK, payload)
 }
 
+// HandleSubmission is the main point of entry into the broker. It accepts a JSON
+// payload and performs an action based on the value of "action" in that JSON.
 func (app *Config) HandleSubmission(w http.ResponseWriter, r *http.Request) {
 	var requestPayload RequestPayload
 
-	err := app.readJson(w, r, requestPayload)
+	err := app.readJson(w, r, &requestPayload)
 	if err != nil {
 		app.errorJson(w, err)
+		return
 	}
 
 	switch requestPayload.Action {
 	case "auth":
-		{
-			app.authenticate(w, requestPayload.Auth)
-
-		}
+		app.authenticate(w, requestPayload.Auth)
 	default:
 		app.errorJson(w, errors.New("unknown action"))
 	}
 }
 
+// authenticate calls the authentication microservice and sends back the appropriate response
 func (app *Config) authenticate(w http.ResponseWriter, a AuthPayload) {
-	//create some json for sending to the auth microservice
+	// create some json we'll send to the auth microservice
 	jsonData, _ := json.MarshalIndent(a, "", "\t")
 
-	//call the service
-	//to call the auth microservie, we make the equivalent of an http request, to access the service we use the name of service that we
-	//added in our docker-compose.yml
-
-	//the authentication microservice is written as `authentication-service` on line 36 in the docker-compose.yml
+	// call the service
 	request, err := http.NewRequest("POST", "http://authentication-service/authenticate", bytes.NewBuffer(jsonData))
 	if err != nil {
 		app.errorJson(w, err)
@@ -67,12 +63,10 @@ func (app *Config) authenticate(w http.ResponseWriter, a AuthPayload) {
 		app.errorJson(w, err)
 		return
 	}
-
 	defer response.Body.Close()
 
-	//get back the correct status code
-
-	if response.StatusCode == http.StatusBadRequest {
+	// make sure we get back the correct status code
+	if response.StatusCode == http.StatusUnauthorized {
 		app.errorJson(w, errors.New("invalid credentials"))
 		return
 	} else if response.StatusCode != http.StatusAccepted {
@@ -80,15 +74,17 @@ func (app *Config) authenticate(w http.ResponseWriter, a AuthPayload) {
 		return
 	}
 
-	var jsonFromServiceResponse jsonResponse
+	// create a variable we'll read response.Body into
+	var jsonFromService jsonResponse
 
-	err = json.NewDecoder(response.Body).Decode(&jsonFromServiceResponse)
+	// decode the json from the auth service
+	err = json.NewDecoder(response.Body).Decode(&jsonFromService)
 	if err != nil {
 		app.errorJson(w, err)
 		return
 	}
 
-	if jsonFromServiceResponse.Error {
+	if jsonFromService.Error {
 		app.errorJson(w, err, http.StatusUnauthorized)
 		return
 	}
@@ -96,7 +92,7 @@ func (app *Config) authenticate(w http.ResponseWriter, a AuthPayload) {
 	var payload jsonResponse
 	payload.Error = false
 	payload.Message = "Authenticated!"
-	payload.Data = jsonFromServiceResponse
+	payload.Data = jsonFromService.Data
 
 	app.writeJson(w, http.StatusAccepted, payload)
 }
