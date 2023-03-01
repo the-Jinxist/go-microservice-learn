@@ -37,4 +37,7 @@ Day 7:
 - We connected the broker service to the authenticated service, by using the name of the service in the `docker-compose.yml` file
    Created another handle/route/endpoint that will process an action from the body and call the auth service
 
+Day 8:
+- Acces the authentication service from the front end via the broker service `/handle` endpoint
+
    
