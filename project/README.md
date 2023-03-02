@@ -40,4 +40,8 @@ Day 7:
 Day 8:
 - Acces the authentication service from the front end via the broker service `/handle` endpoint
 
+Day 9: 
+- Started work on the logger microservice. Added stubs for interacting with the mongo database
+- Also added data models for interacting with mongodb
+
    
