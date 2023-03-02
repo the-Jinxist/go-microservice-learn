@@ -40,8 +40,10 @@ func (app *Config) HandleSubmission(w http.ResponseWriter, r *http.Request) {
 	switch requestPayload.Action {
 	case "auth":
 		app.authenticate(w, requestPayload.Auth)
+		return
 	default:
 		app.errorJson(w, errors.New("unknown action"))
+		return
 	}
 }
 
