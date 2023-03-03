@@ -5,6 +5,8 @@ go 1.19
 require go.mongodb.org/mongo-driver v1.11.2
 
 require (
+	github.com/go-chi/chi v1.5.4 // indirect
+	github.com/go-chi/cors v1.2.1 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/klauspost/compress v1.16.0 // indirect
 	github.com/montanaflynn/stats v0.7.0 // indirect

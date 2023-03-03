@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -78,5 +79,79 @@ func (l *LogEntry) All() ([]*LogEntry, error) {
 	}
 
 	return logs, nil
+
+}
+
+func (l *LogEntry) GetOne(id string) (*LogEntry, error) {
+	cxt, canc := context.WithTimeout(context.Background(), time.Second*15)
+	defer canc()
+
+	collection := client.Database("logs").Collection("logs")
+
+	docID, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		log.Printf("error converting id to object id: %s", err)
+		return nil, err
+	}
+
+	var entry LogEntry
+	err = collection.FindOne(cxt, bson.M{"_id": docID}).Decode(entry)
+	if err != nil {
+		log.Printf("error finding and decoding value: %s", err)
+		return nil, err
+	}
+
+	return &entry, nil
+
+}
+
+func (l *LogEntry) DropCollection(collectionNames ...string) error {
+	finalCollectionName := "logs"
+	if len(collectionNames) > 0 {
+		finalCollectionName = collectionNames[0]
+	}
+
+	cxt, canc := context.WithTimeout(context.Background(), time.Second*15)
+	defer canc()
+
+	collection := client.Database("logs").Collection(finalCollectionName)
+
+	if err := collection.Drop(cxt); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (l *LogEntry) Update() (*mongo.UpdateResult, error) {
+	cxt, canc := context.WithTimeout(context.Background(), time.Second*15)
+	defer canc()
+
+	collection := client.Database("logs").Collection("logs")
+	docID, err := primitive.ObjectIDFromHex(l.ID)
+	if err != nil {
+		log.Printf("error converting id to object id: %s", err)
+		return nil, err
+	}
+
+	result, err := collection.UpdateByID(
+		cxt,
+		bson.M{"_id": docID},
+		bson.D{
+			{Key: "$set", Value: bson.D{
+				{Key: "name", Value: l.Name},
+				{Key: "data", Value: l.Data},
+				{Key: "updated_at", Value: time.Now()},
+			},
+			},
+		},
+	)
+
+	if err != nil {
+		log.Printf("error updating collection id %s", err)
+		return nil, err
+	}
+
+	return result, nil
 
 }
