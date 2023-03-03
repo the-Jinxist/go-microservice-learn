@@ -44,4 +44,8 @@ Day 9:
 - Started work on the logger microservice. Added stubs for interacting with the mongo database
 - Also added data models for interacting with mongodb
 
+Day 10:
+- Finished up data models, added Update() and Drop().
+- Added server code and handles for routes
+
    
