@@ -48,4 +48,10 @@ Day 10:
 - Finished up data models, added Update() and Drop().
 - Added server code and handles for routes
 
+Day 11:
+- Added `mongo` to our `docker-compose.yml`, added a service called `mongo`, the setup was very similar to postgres's so it should be
+   straightforward to understand again
+- We then added the corresponding commands to our Makefile. 
+- Added connection from broker service to logger service 
+
    
