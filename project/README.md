@@ -54,4 +54,7 @@ Day 11:
 - We then added the corresponding commands to our Makefile. 
 - Added connection from broker service to logger service 
 
+Day 12:
+- Finished up logger microservice
+
    
