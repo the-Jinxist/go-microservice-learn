@@ -57,4 +57,14 @@ Day 11:
 Day 12:
 - Finished up logger microservice
 
+Day 13:
+- Started work on Mail microservice. We're using Mailhog. It's best practice to simulate a mail server in development instead of sending a real email
+- We added mailhog to our `docker-compose.yml`
+- Started writing boilerplate code for Mailer service
+- We imported some third party packages to make our mailing life easier 
+   `github.com/vanng822/go-premailer/premailer` -> helps us to use css with our email without fuss
+   `github.com/xhit/go-simple-mail/v2` our mailer package
+- We wrote the huge logic to send mail
+
+
    

@@ -31,6 +31,13 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: password 
     volumes:
       - ./db-data/mongo/:/data/db
+  
+  #This will provide a mailhog instance for us to use
+  mailhog:
+    image: 'mailhog/mailhog:latest'
+    ports:
+      - "1025:1025"
+      - "8025:8025"
 
   broker-service:
 
