@@ -66,5 +66,11 @@ Day 13:
    `github.com/xhit/go-simple-mail/v2` our mailer package
 - We wrote the huge logic to send mail
 
+Day 14:
+- Added routes to mail service to accept requests and send mails
+- Added mail service to `docker-compose.yml` and added the command to build the binary `build_mail` in the Makefile
+- Also added the `mail-service.dockerfile` to collect the binary and put it in the docker container
+- `sendMail()` function for broker service to access the mail-service
+
 
    
