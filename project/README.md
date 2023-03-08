@@ -72,5 +72,9 @@ Day 14:
 - Also added the `mail-service.dockerfile` to collect the binary and put it in the docker container
 - `sendMail()` function for broker service to access the mail-service
 
+Day 15:
+- Started work with learning rabbitmq. Used the library here `https://github.com/rabbitmq/amqp091-go`
+- Established a connection with rabbitmq
+
 
    

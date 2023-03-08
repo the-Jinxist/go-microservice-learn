@@ -32,6 +32,17 @@ services:
     volumes:
       - ./db-data/mongo/:/data/db
   
+  rabbitmq:
+    image: 'rabbitmq:3.11.10-management-alpine'
+    ports:
+      - 5672:5672   # for sender and consumer connections
+      - 15672:15672 # for serve RabbitMQ GUI
+    deploy:
+      mode: replicated
+      replicas: 1
+    volumes:
+      - ./db-data/rabbitmq/:/var/lib/rabbitmq/data/
+  
   #This will provide a mailhog instance for us to use
   mailhog:
     image: 'mailhog/mailhog:latest'
