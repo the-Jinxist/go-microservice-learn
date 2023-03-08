@@ -75,6 +75,7 @@ Day 14:
 Day 15:
 - Started work with learning rabbitmq. Used the library here `https://github.com/rabbitmq/amqp091-go`
 - Established a connection with rabbitmq
+- Found this article useful: https://dev.to/koddr/working-with-rabbitmq-in-golang-by-examples-2dcn
 
 
    
