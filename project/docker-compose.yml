@@ -92,6 +92,17 @@ services:
     deploy:
       mode: replicated
       replicas: 1
+  
+  listener-service:
+
+    #providing the path to the dockerfile since it is another folder
+    build: 
+      context: ./../listener-service
+      dockerfile: ./../listener-service/listener-service.dockerfile
+    restart: always
+    deploy:
+      mode: replicated
+      replicas: 1
 
   mail-service:
 

@@ -77,5 +77,8 @@ Day 15:
 - Established a connection with rabbitmq
 - Found this article useful: https://dev.to/koddr/working-with-rabbitmq-in-golang-by-examples-2dcn
 
+Day 16:
+- Utlized the rabbitmq logging more
+
 
    
