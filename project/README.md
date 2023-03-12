@@ -80,5 +80,9 @@ Day 15:
 Day 16:
 - Utlized the rabbitmq logging more
 
+Day 17:
+- Added emitter to push events
+- Tested things
+
 
    
