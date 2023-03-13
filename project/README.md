@@ -84,5 +84,8 @@ Day 17:
 - Added emitter to push events
 - Tested things
 
+Day 18:
+- Set up an RPC server in the Logger microservice and we also started listening for RPC calls in the same microservice
+- Sent event to RPC from broker. Tested everything out
 
    

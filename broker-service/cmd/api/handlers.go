@@ -7,6 +7,7 @@ import (
 	"errors"
 	"log"
 	"net/http"
+	"net/rpc"
 )
 
 type RequestPayload struct {
@@ -60,7 +61,9 @@ func (app *Config) HandleSubmission(w http.ResponseWriter, r *http.Request) {
 		app.authenticate(w, requestPayload.Auth)
 		return
 	case "log":
-		app.logEventViaRabbit(w, requestPayload.Log)
+		// app.logItem(w, requestPayload.Log)
+		// app.logEventViaRabbit(w, requestPayload.Log)
+		app.logItemViaRPC(w, requestPayload.Log)
 		return
 	case "mail":
 		app.sendMail(w, requestPayload.Mail)
@@ -235,4 +238,41 @@ func (app *Config) pushToQueue(name, msg string) error {
 	}
 
 	return nil
+}
+
+type RPCPayload struct {
+	Name string
+	Data string
+}
+
+func (app *Config) logItemViaRPC(w http.ResponseWriter, a LogPayload) {
+	client, err := rpc.Dial("tcp", "logger-service:5001")
+	if err != nil {
+		app.errorJson(w, err)
+		return
+	}
+
+	//NOTE, you have to create a type that exactly matches the one that the remote RPC expects to get
+	//Exactly the same name and fields of the type
+	rpcPayload := &RPCPayload{
+		Name: a.Name,
+		Data: a.Data,
+	}
+
+	var result string
+	//To call the direct function, you use the exact name of the RPC server that you registered, in our case, RPCServer; a dot "."; The exact name of the function, in this case, LogInfo
+
+	err = client.Call("RPCServer.LogInfo", rpcPayload, &result)
+	if err != nil {
+		app.errorJson(w, err)
+		return
+	}
+
+	payload := jsonResponse{
+		Error:   false,
+		Message: result,
+	}
+
+	app.writeJson(w, http.StatusAccepted, payload)
+
 }
