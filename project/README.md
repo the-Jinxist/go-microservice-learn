@@ -88,4 +88,11 @@ Day 18:
 - Set up an RPC server in the Logger microservice and we also started listening for RPC calls in the same microservice
 - Sent event to RPC from broker. Tested everything out
 
+Day 19:
+- We're working on speeding up our work using gRPC. To do this, we used the tools gotten by running these commands: `go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.27`, `go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2`
+- To use gRPC, we first write the protocol file, we compile it, then we get some generated files. After this, we write the client code, we write the server code, then we test things
+- Information for installing for protoc can be found here: https://grpc.io/docs/protoc-installation/
+- The command we used to generate the files that we would work with corresponding to this, looked something like this: `protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative log.proto`
+- We wrote up the Logserver struct. It seems it has to always inherit(via composition), the `Unimplemented[Service name specified in the protoc]ServiceServer` interface, and also implement the function that comes with the interface. The signature of this interface can be found in the [proto-file-name]_grpc.pb.go file in an interface that looks like `[Service name specified in the protoc]ServiceServer`
+
    
