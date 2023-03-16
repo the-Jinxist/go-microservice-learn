@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+//Specifying what the package is going to be called
+package logs;
+
+//this determines what the golang package will be called
+option go_package = "/logs";
+
+//messages are basically models, they could define the request and response formats
+message Log{
+    string name = 1;
+    string data = 2;
+}
+
+message LogRequest {
+    Log LogEntry = 1;
+}
+
+message LogResponse {
+    string result = 1;
+}
+
+service LogService{
+    rpc WriteLog (LogRequest) returns (LogResponse);
+}

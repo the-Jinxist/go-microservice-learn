@@ -95,4 +95,9 @@ Day 19:
 - The command we used to generate the files that we would work with corresponding to this, looked something like this: `protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative log.proto`
 - We wrote up the Logserver struct. It seems it has to always inherit(via composition), the `Unimplemented[Service name specified in the protoc]ServiceServer` interface, and also implement the function that comes with the interface. The signature of this interface can be found in the [proto-file-name]_grpc.pb.go file in an interface that looks like `[Service name specified in the protoc]ServiceServer`
 
+Day 20:
+- Listened for connections in the logger-microservice
+- Wrote up the client code for communicating with the gPRC server.
+- Updated front-end code and tested
+
    
