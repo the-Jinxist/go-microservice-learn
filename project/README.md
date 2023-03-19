@@ -100,4 +100,14 @@ Day 20:
 - Wrote up the client code for communicating with the gPRC server.
 - Updated front-end code and tested
 
-   
+Day 21:
+- Docker Swarm Overview: `https://docs.docker.com/engine/swarm/`
+- Building images for each of our services using a command that looks like: `docker build -f your-service.dockerfile -t your-docker-hub-username/service-name:1.0.0 <path; in our case we use ".">`
+- We logged in into our docker hub using `docker login`
+- We then pushed our image to docker using `docker push <username>/your-service-name:version`
+
+Day 22:
+- Wrote our `swarm.yml`
+- We initialized our docker swarm using `docker swarm init` in the project folder. Found some instructions to add a worker node to our swarm in case if there's too much traffic or something
+- To regenerate this instruction and token, we can use the command `docker swarm join-token worker` and to add a manager node, `docker swarm join-token manager`
+- To deploy docker swarm, we need to execute this command `docker stack deploy -c swarm.yml myapp`
