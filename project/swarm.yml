@@ -35,7 +35,7 @@ services:
       replicas: 1
   
   mail-service:
-    image: neofemo/mail-service
+    image: neofemo/mail-service:1.0.0
     deploy:
       mode: replicated
       replicas: 1
@@ -54,15 +54,6 @@ services:
     # This makes sure there's only one instance of the rabbitmq image running
     deploy:
       mode: global
-    #Normally for production, you have to specify the volume of rabbitmq and where to put them
-  
-  mailhog:
-    image: 'mailhog/mailhog:latest'
-    ports:
-      - "1025:1025"
-      - "8025:8025"
-    deploy:
-      mode: global
   
   mongo:
     image: 'mongo:4.2.17-bionic'
@@ -76,6 +67,16 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: password 
     volumes:
       - ./db-data/mongo/:/data/db
+  
+  #This will provide a mailhog instance for us to use
+  mailhog:
+    image: 'mailhog/mailhog:latest'
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    deploy:
+      mode: replicated
+      replicas: 2
   
   postgres:
     image: 'postgres:14.0'

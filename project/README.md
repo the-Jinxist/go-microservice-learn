@@ -111,3 +111,14 @@ Day 22:
 - We initialized our docker swarm using `docker swarm init` in the project folder. Found some instructions to add a worker node to our swarm in case if there's too much traffic or something
 - To regenerate this instruction and token, we can use the command `docker swarm join-token worker` and to add a manager node, `docker swarm join-token manager`
 - To deploy docker swarm, we need to execute this command `docker stack deploy -c swarm.yml myapp`
+
+Day 23:
+- Faced a big wahala. Mailhog service wasn't starting. Apparently, it was resolving to a different architecture so it couldn't start the service, such nonsense. I had to add a flag to the command to deploy the swarm, it looked like this: `docker stack deploy -c swarm.yml microservice --resolve-image never`
+- Learning about scaling services up. i.e increasing the replicas of the services that your deployed. The command looks something like.. `docker service scale microservice_listener-service=3`. To scale down, we use the same command, just reducing the number of replicas: `docker service scale microservice_listener-service=2`
+- To update a service, first we're updating our image using the pervious command but with a new version. It'll look like this: `docker build -f listener-service.dockerfile -t neofemo/listener-service:1.0.1 .`. then you push to docker with the new version `docker push neofemo/listener-service:1.0.1`.
+
+After, to update the image that one of our service is using we use this command `docker service update --image <image-name:image-version> <name of service>`
+
+- To stop a service, you just scale it to 0.
+- To remove the entire swarm, call `docker stack rm microservice`
+- To leave the swarm completely, `docker swarm leave [--force](if it's a manager)`
