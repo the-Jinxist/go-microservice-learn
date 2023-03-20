@@ -103,6 +103,17 @@ services:
     deploy:
       mode: replicated
       replicas: 1
+  
+  frontend-service:
+
+    #providing the path to the dockerfile since it is another folder
+    build: 
+      context: ./../front-end
+      dockerfile: ./../front-end/front-end.dockerfile
+    restart: always
+    deploy:
+      mode: replicated
+      replicas: 1
 
   mail-service:
 

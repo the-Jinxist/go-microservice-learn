@@ -5,16 +5,14 @@ services:
 
   #Use the exact name you used to represent the service in the docker-compose file
   broker-service:
-    image: neofemo/broker-service:1.0.0
-    ports:
-      - "8080:80"
+    image: neofemo/broker-service:1.0.1
     deploy:
       mode: replicated
       replicas: 1
   
   #Use the exact name you used to represent the service in the docker-compose file
   listener-service:
-    image: neofemo/listener-service:1.0.0
+    image: neofemo/listener-service:1.0.1
     deploy:
       mode: replicated
       replicas: 1
