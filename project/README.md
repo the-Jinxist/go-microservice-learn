@@ -122,3 +122,5 @@ After, to update the image that one of our service is using we use this command 
 - To stop a service, you just scale it to 0.
 - To remove the entire swarm, call `docker stack rm microservice`
 - To leave the swarm completely, `docker swarm leave [--force](if it's a manager)`
+
+- We added the frontend service to docker and our swarm. Replicating the steps we did for other services before

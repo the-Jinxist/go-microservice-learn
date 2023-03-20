@@ -17,6 +17,12 @@ services:
       mode: replicated
       replicas: 1
   
+  frontend-service:
+    image: neofemo/front-end:1.0.0
+    deploy:
+      mode: replicated
+      replicas: 1
+  
   authentication-service:
     image: neofemo/authentication-service:1.0.0
     deploy:
