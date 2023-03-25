@@ -124,3 +124,9 @@ After, to update the image that one of our service is using we use this command 
 - To leave the swarm completely, `docker swarm leave [--force](if it's a manager)`
 
 - We added the frontend service to docker and our swarm. Replicating the steps we did for other services before
+
+Day 24:
+- Using Caddy as a proxy to hit our web server: Here: `https://caddyserver.com/` and the image on docker hub: `https://hub.docker.com/_/caddy`
+- From tutorial resource, we downloaded two files, `caddy.dockerfile` and `Caddyfile`
+- We built an image from  `caddy.dockerfile` and pushed it to docker hub
+- We added caddy to our swarm.yml and specified the volumes. Volumes help to store data collected in a docker container, somewhere else because docker containers are ephemeral

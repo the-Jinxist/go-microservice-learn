@@ -59,6 +59,18 @@ services:
     deploy:
       mode: global
   
+  caddy:
+    image: 'neofemo/micro-caddy:1.0.0'
+    deploy:
+      mode: replicated
+      replicas: 1
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+  
   mongo:
     image: 'mongo:4.2.17-bionic'
     ports:
@@ -96,6 +108,12 @@ services:
     #this adds the database files to our project. specifically at the ./db-data/postgres directory. weird choice but okay
     volumes:
       - ./db-data/postgres/:/var/lib/postgresql/data/
+
+
+volumes:
+  caddy_data: 
+    external: true
+  caddy_config:
 
 
 
