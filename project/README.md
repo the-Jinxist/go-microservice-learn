@@ -130,3 +130,7 @@ Day 24:
 - From tutorial resource, we downloaded two files, `caddy.dockerfile` and `Caddyfile`
 - We built an image from  `caddy.dockerfile` and pushed it to docker hub
 - We added caddy to our swarm.yml and specified the volumes. Volumes help to store data collected in a docker container, somewhere else because docker containers are ephemeral
+
+Day 25:
+- Created folders `caddy_data` and `caddy_config`. They correspond to the folders provided for the volumes for the caddy image in our `swarm.yml`
+- We edited /etc/hosts using vim. Used the command: `sudo vi /etc/hosts` and added a backend entry where `localhost` was defined
