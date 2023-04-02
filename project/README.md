@@ -134,3 +134,6 @@ Day 24:
 Day 25:
 - Created folders `caddy_data` and `caddy_config`. They correspond to the folders provided for the volumes for the caddy image in our `swarm.yml`
 - We edited /etc/hosts using vim. Used the command: `sudo vi /etc/hosts` and added a backend entry where `localhost` was defined
+
+Day 26:
+- Updated front-end with dynamic url gotten from our environemt. Added the code to `main.go` and passed it to `test.page.gohtml`.
