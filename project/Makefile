@@ -1,4 +1,4 @@
-FRONT_END_BINARY=frontApp
+FRONT_END_BINARY=frontEndApp
 BROKER_BINARY=brokerApp
 AUTH_BINARY=authApp
 LOGGER_BINARY=loggerApp
