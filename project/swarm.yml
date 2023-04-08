@@ -17,7 +17,7 @@ services:
       mode: replicated
       replicas: 1
   
-  frontend-service:
+  front-end:
     image: neofemo/front-end:1.0.3
     deploy:
       mode: replicated
