@@ -25,9 +25,23 @@ localhost:80 {
 	encode zstd gzip
 	import static
 
+	# Logging configuration
+    log {
+        output file /var/log/caddy/access.log
+        format json
+        level INFO
+    }
+
 	reverse_proxy  http://front-end:8081
 }
 
 backend:80 {
+	# Logging for backend proxy
+	log {
+		output file /var/log/caddy/backend.log
+		format json
+		level INFO
+	}
+
 	reverse_proxy http://broker-service:8080
 }

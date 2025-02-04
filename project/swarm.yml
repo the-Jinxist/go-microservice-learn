@@ -5,7 +5,7 @@ services:
 
   #Use the exact name you used to represent the service in the docker-compose file
   broker-service:
-    image: neofemo/broker-service:1.0.1
+    image: neofemo/broker-service:1.0.2
     deploy:
       mode: replicated
       replicas: 1
@@ -18,7 +18,7 @@ services:
       replicas: 1
   
   front-end:
-    image: neofemo/front-end:1.0.0
+    image: neofemo/front-end:1.0.2
     deploy:
       mode: replicated
       replicas: 1
