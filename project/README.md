@@ -137,3 +137,18 @@ Day 25:
 
 Day 26:
 - Updated front-end with dynamic url gotten from our environemt. Added the code to `main.go` and passed it to `test.page.gohtml`.
+
+# After a very long hiatus, I'm baaaack 
+Day 27:
+- I forgot to update the binary for broker-service and frontend-service after updating the ports they listen to.
+- Updated postgres version on swarm.yml because 14.0 has some malware
+- We started working to push our swarm to the internet. I created a vm instance on google cloud, You'll pass Google Compute Engine, create a vm instance. Using the information provided. `Ubuntu 20.4 LTS`, Allow https and http to connect. I ssh-ed into the server (Did this my creating a ssh key pair, uploaded the public key to the ssk key section of the vm instance and ran the command `ssh -i [path-to-private-key](e.g ~/.ssh/goserver) [username](e.g nerosilva522)@[external server ip](e.g 35.188.42.215)`) and ran some commands to setup access
+- `sudo adduser neo` (created new user), `sudo usermod -aG sudo neo` (made user have sudo priviledges), `sudo ufw allow ssh`, `sudo ufw allow http`, `sudo ufw allow https` to allow ssh, https and http access respectively
+- Enabled access on specific ports for docker swarm. `sudo ufw allow 27017/tcp`, `sudo ufw allow 7946/tcp`, `sudo ufw allow 7946/udp`, `sudo ufw allow 4789/udp`, `sudo ufw allow 8025/tcp`
+- We then called `ufw enable` to save our settings. Called `ufw status` to view all our settings
+- Installed docker on the vm: https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+- We updated the hostname of our server `sudo hostnamectl set-hostname node-1`
+- We then updates the hosts file with the command: `sudo vi /etc/hosts` Used down arrow to the bottom of the file. Type `o`, copied the external IP address of the server. pasted it, hit tab, wrote `node-1`
+
+Day 28:
+- Got a domain, trying to add the IP address of the external VM instance to a subdomain DNS records

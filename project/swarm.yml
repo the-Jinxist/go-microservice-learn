@@ -97,7 +97,7 @@ services:
       replicas: 2
   
   postgres:
-    image: 'postgres:14.0'
+    image: 'postgres:14.2'
     ports:
       - "5432:5432"
     deploy:
