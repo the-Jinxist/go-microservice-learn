@@ -152,3 +152,21 @@ Day 27:
 
 Day 28:
 - Got a domain, trying to add the IP address of the external VM instance to a subdomain DNS records
+
+Day 29:
+- Finally got the subdomains pointed to the external IP address of my google VM
+- Added a CNAME subdomain for `broker`, so we can access `broker.tukio.com.ng`. 
+- Created a new caddy file to point to the domains we just setup up. it's `Caddyfile.production`, which is used by the `caddy.production.dockerfile` when creating the container. We then created a new swarm configuration file; `swarm.production.yml` file
+- The new prod swarm configuration file points to the production caddy container that we deployed to docker hub. We deployed it using the `caddy.production.dockerfile`
+- Docker swarm contains didn't work fine because the folders for 
+  - ```
+    ./db-data/postgres/:/var/lib/postgresql/data/
+    ./db-data/mongo/:/data/db
+    
+    ```
+    for mongo and postgres contains in our swarm config file, were not created yet
+  
+- Found an issue with some of my binaries, they weren't built for amd64, the architecture of the VM instance, added the AARCH command to the golang build commands, rebuilt the binaries, built new tags using the `--no-cache` flag. E,g `docker build --no-cache -f front-end.dockerfile -t neofemo/front-end:1.2.0 .`
+  - Pushed the new tags. Pending mail, logger and listener services.
+  - Once that is done, will delete the swarm.yml file, use `vi swarm.yml` to create a new one, copy the new production swarm file and try to deploy the swarm again.
+  - You can use `docker stack rm myapp` to delete the swarm

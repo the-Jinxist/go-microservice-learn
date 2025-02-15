@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM --platform=linux/amd64 alpine:latest
 
 #creates the app directory
 RUN mkdir /app
