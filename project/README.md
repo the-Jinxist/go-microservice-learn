@@ -164,9 +164,15 @@ Day 29:
     ./db-data/mongo/:/data/db
     
     ```
-    for mongo and postgres contains in our swarm config file, were not created yet
+    for mongo and postgres contains in our swarm config file, were not created yet. Errors gotten was `Invalid mount config for type`. You also get this error when you binaries are of the wrong aarch too
   
 - Found an issue with some of my binaries, they weren't built for amd64, the architecture of the VM instance, added the AARCH command to the golang build commands, rebuilt the binaries, built new tags using the `--no-cache` flag. E,g `docker build --no-cache -f front-end.dockerfile -t neofemo/front-end:1.2.0 .`
   - Pushed the new tags. Pending mail, logger and listener services.
   - Once that is done, will delete the swarm.yml file, use `vi swarm.yml` to create a new one, copy the new production swarm file and try to deploy the swarm again.
-  - You can use `docker stack rm myapp` to delete the swarm
+  - You can use `docker stack rm myapp` to delete the swarm.
+
+Day 30:
+- Had to add `--platform=linux/amd64` to the dockerfiles to make the built and deployed containers work with the correct arch type; amd64 
+- `http://swarm.tukio.com.ng/` is accessible on the internet. Yay!
+- Error was `no suitable node error,`, if you run the individual image, you'll get `docker: image with reference neofemo/authentication-service:1.0.0 was found but its platform (linux/arm64/v8) does not match the specified platform (linux/amd64).`
+- Fix for above is just to build a golang binary of the correct arch, then add the arch to the dockerfile as shown above, (first point in Day 30). The build and push a new tag, make sure to build the new tag with the `--no-cache` command
