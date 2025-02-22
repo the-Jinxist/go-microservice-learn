@@ -26,7 +26,7 @@ services:
       mode: replicated
       replicas: 1
     environment:
-      BROKER_URL: "http://broker.tukio.com.ng"
+      BROKER_URL: "https://broker.tukio.com.ng"
   
   authentication-service:
 #    platform: linux/amd64
@@ -69,7 +69,7 @@ services:
       replicas: 1
   
   caddy:
-    image: 'neofemo/micro-caddy-production:1.2.0'
+    image: 'neofemo/micro-caddy-production:1.3.0'
     deploy:
       mode: replicated
       replicas: 1

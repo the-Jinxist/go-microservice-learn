@@ -21,9 +21,10 @@
 	}
 }
 
-swarm.tukio.com.ng:80 {
+swarm.tukio.com.ng {
 	encode zstd gzip
 	import static
+	import security
 
 	# Logging configuration
     log {
@@ -35,7 +36,7 @@ swarm.tukio.com.ng:80 {
 	reverse_proxy  http://front-end:8081
 }
 
-broker.tukio.com.ng:80 {
+broker.tukio.com.ng {
 	# Logging for backend proxy
 	log {
 		output file /var/log/caddy/backend.log
