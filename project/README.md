@@ -195,3 +195,10 @@ to the placement constraints. An FS solution like Gluster FS can help
 - We're installing minikube and kubectl to manage our prospective kubernetes cluster.
 - Link to install minikube: https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Farm64%2Fstable%2Fbinary+download
 - Link to install kubectl; https://kubernetes.io/docs/tasks/tools/
+
+Day 32:
+- ran `minikube start --nodes=2` to start up minikube I guess
+- tutorial guy ran minikube delete to remove an older version of minikube on his device. I didn't need to do this
+-  `minikube status` to verify that everything started correctly
+-  `minikube stop` to stop minikube running
+-  `minikube dashboard` to view the b8s dashboard
