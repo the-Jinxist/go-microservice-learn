@@ -213,3 +213,4 @@ Dy 33:
 - We created a deployment file for our mongodb pod in the k8s folder. We do that using the command `kubectl apply -f k8s`. Here k8s is the name of the folder that contains the deployment file. We ran this from the folder contains the k8s folder
 - Had to wait for a few minutes for the pod to be up and running. ran ` kubectl get svc` to check for the service. Ran `kubectl describe pod mongo-5f77b45847-tmdm6` -- here `mongo-5f77b45847-tmdm6` is the pod name -- to get more info about the pod.
 - Used ` kubectl get deployments` to get deployments
+- We then added deployment file for rabbitmq. We deployed that only that with the command `kubectl apply -f k8s/rabbit.yml`
