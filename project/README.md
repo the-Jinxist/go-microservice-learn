@@ -202,3 +202,14 @@ Day 32:
 -  `minikube status` to verify that everything started correctly
 -  `minikube stop` to stop minikube running
 -  `minikube dashboard` to view the b8s dashboard
+
+Dy 33:
+- Working on creating a deployment file for mongo
+- Kubernetes deals with pods which can have more than one docker containers in them
+- Used `kubectl get pods` to get pods. `kubectl get pods -A` to get the basic pods already running
+- There are two ways of defining what a pod contains in k8s. 
+  - The imperative way; typing the commands straight in the command line
+  - The declarative way; create a file that has all our descriptions of what will be defined in our pods
+- We created a deployment file for our mongodb pod in the k8s folder. We do that using the command `kubectl apply -f k8s`. Here k8s is the name of the folder that contains the deployment file. We ran this from the folder contains the k8s folder
+- Had to wait for a few minutes for the pod to be up and running. ran ` kubectl get svc` to check for the service. Ran `kubectl describe pod mongo-5f77b45847-tmdm6` -- here `mongo-5f77b45847-tmdm6` is the pod name -- to get more info about the pod.
+- Used ` kubectl get deployments` to get deployments
