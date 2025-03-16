@@ -1,0 +1,19 @@
+version: '3'
+
+#services we are creating, first one we named broker-service
+services:
+  #Added this postgres docker container for our project
+  postgres:
+    image: 'postgres:14.0'
+    ports:
+      - "5432:5432"
+    deploy:
+      mode: replicated
+      replicas: 1
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: users
+    #this adds the database files to our project. specifically at the ./db-data/postgres directory. weird choice but okay
+    volumes:
+      - ./db-data/postgres/:/var/lib/postgresql/data/

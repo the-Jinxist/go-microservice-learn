@@ -220,3 +220,11 @@ Day 34:
 - Updated the key from `name` to `app`
 - Used ` kubectl get deployments` to get our deployments, used `kubectl delete deployments broker-service mongo rabbitmq` to delete all our deployments
 - Used `kubectl delete svc broker-service mongo rabbitmq` to delete the kubernetes services
+
+Day 35:
+- We added deployment files for listener, mail and mailhog services
+- We deployed our postgres db to an external service instead of in the same k8s cluster.
+- We created postgres.yml, a docker compose file use used to bring up the postgres container
+- We then created a deployment file for Authentication which we point to our newly created postgres container
+- The value of host in our DSN environmental variable is now `host.minikube.internal`. Didn't check this. Wrote wrong initial IP
+- Found online the right host to connect to your local postgres docker container is `host.docker.internal`. This worked
