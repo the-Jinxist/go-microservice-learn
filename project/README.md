@@ -214,3 +214,9 @@ Dy 33:
 - Had to wait for a few minutes for the pod to be up and running. ran ` kubectl get svc` to check for the service. Ran `kubectl describe pod mongo-5f77b45847-tmdm6` -- here `mongo-5f77b45847-tmdm6` is the pod name -- to get more info about the pod.
 - Used ` kubectl get deployments` to get deployments
 - We then added deployment file for rabbitmq. We deployed that only that with the command `kubectl apply -f k8s/rabbit.yml`
+
+Day 34:
+- We had a typo in our k8s deployment files. Used `name` in `selector` instead of `app`. This is in the `Service` section at the bottom
+- Updated the key from `name` to `app`
+- Used ` kubectl get deployments` to get our deployments, used `kubectl delete deployments broker-service mongo rabbitmq` to delete all our deployments
+- Used `kubectl delete svc broker-service mongo rabbitmq` to delete the kubernetes services
